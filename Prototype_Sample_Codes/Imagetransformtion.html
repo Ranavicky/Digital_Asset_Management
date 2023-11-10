@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tagging</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tags {
+            margin-top: 20px;
+        }
+
+        .tags span {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .tags span:hover {
+            background-color: #45a049;
+        }
+
+        .tag-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Tags to Image</h1>
+        <img id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ0-rYPgPBLsZ2O6ByJ7_ekQZAWmO9UmvRVQ&usqp=CAU" alt="Sample Image">
+        <input type="text" id="tagInput" placeholder="Enter a tag">
+        <input type="button" value="Add Tag" onclick="addTag()">
+        <div class="tags" id="tagContainer"></div>
+        <div class="tag-list" id="tagList">
+            <h3>Submitted Tags:</h3>
+            <ul id="submittedTags">
+                <li>Cuisine</li>
+                <li>Travel</li>
+                <li>Nature</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function addTag() {
+            const tagInput = document.getElementById('tagInput');
+            const tagValue = tagInput.value.trim();
+            const tagList = document.getElementById('submittedTags');
+
+            if (tagValue) {
+                const tagContainer = document.getElementById('tagContainer');
+                const tagSpan = document.createElement('span');
+                tagSpan.textContent = tagValue;
+                tagContainer.appendChild(tagSpan);
+                tagInput.value = '';
+
+                const newTag = document.createElement('li');
+                newTag.textContent = tagValue;
+                tagList.appendChild(newTag);
+            }
+        }
+    </script>
+</body>
+</html>
