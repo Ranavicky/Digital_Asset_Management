@@ -1,5 +1,3 @@
-# Digital_Asset_Management
-
 # Digital Asset Management (DAM) Full Stack App
 
 ## Project Overview
