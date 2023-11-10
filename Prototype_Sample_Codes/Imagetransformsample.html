@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .transformations {
+            max-width: 40%;
+        }
+
+        .transformations form {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        #image-container {
+            margin-left: 50px;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="transformations">
+            <form>
+                <label for="reset">Reset Adjustment</label>
+                <input type="range" id="reset" min="0" max="100" value="50">
+
+                <label for="contrast">Contrast</label>
+                <input type="range" id="contrast" min="0" max="100" value="50">
+
+                <label for="saturation">Saturation</label>
+                <input type="range" id="saturation" min="0" max="100" value="50">
+
+                <label for="brightness">Brightness</label>
+                <input type="range" id="brightness" min="0" max="100" value="50">
+            </form>
+
+            <div class="links">
+                <a href="login.html">Return to Login Page</a> | <a href="upload.html">Upload a New Photo</a>
+            </div>
+        </div>
+
+        <div id="image-container">
+            <img id="image" src="sample-image.jpg" alt="Sample Image">
+        </div>
+    </div>
+
+    <script>
+        const image = document.getElementById('image');
+        const resetRange = document.getElementById('reset');
+        const contrastRange = document.getElementById('contrast');
+        const saturationRange = document.getElementById('saturation');
+        const brightnessRange = document.getElementById('brightness');
+
+        function applyFilters() {
+            const filterValue = `contrast(${contrastRange.value}%) brightness(${brightnessRange.value}%) saturate(${saturationRange.value}%)`;
+            image.style.filter = filterValue;
+        }
+
+        resetRange.addEventListener('input', () => {
+            contrastRange.value = 50;
+            brightnessRange.value = 50;
+            saturationRange.value = 50;
+            image.style.filter = 'none';
+        });
+
+        contrastRange.addEventListener('input', applyFilters);
+        brightnessRange.addEventListener('input', applyFilters);
+        saturationRange.addEventListener('input', applyFilters);
+    </script>
+</body>
+</html>
